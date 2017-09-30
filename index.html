@@ -5,88 +5,49 @@
   <meta charset="utf-8" />
   <meta name="description" content="HDE Frontend Test - Email" />
   <meta name="viewport" content="width = device-width, initial-scale = 1" />
-  <link rel="stylesheet" href="src/main.css" />
+  <link rel="stylesheet" href="src/css/main.css" />
+  <script src="src/angular/angular.min.js"></script>
+  <script src="src/angular/app.js"></script>
 </head>
-<body>
+<body ng-app="emailbox">
   <div class="page">
-    <div class="box topbox">
-      <div class="topbox_content">
-        <h4 class="search-period">Search Period :</h4>
-        <input class="input-date" type="date" />
-        <span class="dash">-</span>
-        <input class="input-date" type="date" placeholder="yyyy-mm-dd" />
-        <div class="btn">
-          <span class="btn_sprite sprite_left"></span><!--
-          --><span class="btn_sprite sprite_middle"><img class="btn_img" src="images/tool-search.png" /><span class="btn_text">Search</span></span><!--
-          --><span class="btn_sprite sprite_right"></span>
+    <div class="topbox_bg">
+      <div class="box topbox">
+        <div class="topbox_content">
+          <h3 class="search-period">Search Period :</h3>
+          <input class="input-date" type="date" />
+          <span class="dash">-</span>
+          <input class="input-date" type="date" />
+          <div class="btn">
+            <span class="btn_sprite sprite_left"></span><!--
+            --><span class="btn_sprite sprite_middle"><img class="btn_img" src="src/images/tool-search.png" /><span class="btn_text">Search</span></span><!--
+            --><span class="btn_sprite sprite_right"></span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="box subox">
-      Results: <span class="mail_count">15</span> mail(s)
+    <div ng-controller="EmailBoxController">
+      <div class="box subox">
+        <h3>Results: <span class="mail_count"></span> mail(s)</h3>
+      </div>
+      <table class="box subox emailbox">
+        <tr class="emailbox_row">
+          <th class="emailbox_header">
+            From
+          </th>
+          <th class="emailbox_header">
+            To
+          </th>
+          <th class="emailbox_header">
+            Subject
+          </th>
+          <th class="emailbox_header header_date unsorted">
+            Date
+          </th>
+        </tr>
+      </table>
     </div>
-    <table class="box subox emailbox">
-      <tr class="emailbox_row">
-        <th class="emailbox_header">
-          From
-        </th>
-        <th class="emailbox_header">
-          To
-        </th>
-        <th class="emailbox_header">
-          Subject
-        </th>
-        <th class="emailbox_header">
-          Date <span class="arrow"></span>
-        </th>
-      </tr>
-      <tr class="emailbox_row">
-        <td class="emailbox_cell">
-          <span>テスター１　&lt;tester15@test.example.com&gt;</span>
-        </td>
-        <td class="emailbox_cell">
-          <img class="emailbox_addressImg" src="images/addresses.png" />
-          <span>テスター2　&lt;tester40@test.example.com&gt;</span>
-        </td>
-        <td class="emailbox_cell">
-          <span>テスト Test test Subject subject <span class="hour"> 15:10</span></span>
-        </td>
-        <td class="emailbox_cell">
-          <span>15:10</span>
-        </td>
-      </tr>
-      <tr class="emailbox_row">
-        <td class="emailbox_cell">
-          <span>テスター１　&lt;tester15@test.example.com&gt;</span>
-        </td>
-        <td class="emailbox_cell">
-          <img class="emailbox_addressImg" src="images/addresses.png" />
-          <span>テスター2　&lt;tester40@test.example.com&gt;</span>
-        </td>
-        <td class="emailbox_cell">
-          <span>テスト Test test Subject subject <span class="hour"> 15:10</span></span>
-        </td>
-        <td class="emailbox_cell">
-          <span>15:10</span>
-        </td>
-      </tr>
-      <tr class="emailbox_row">
-        <td class="emailbox_cell">
-          <span>テスター１　&lt;tester15@test.example.com&gt;</span>
-        </td>
-        <td class="emailbox_cell">
-          <img class="emailbox_addressImg" src="images/addresses.png" />
-          <span>テスター2　&lt;tester40@test.example.com&gt;</span>
-        </td>
-        <td class="emailbox_cell">
-          <span>テスト Test test Subject subject <span class="hour"> 15:10</span></span>
-        </td>
-        <td class="emailbox_cell">
-          <span>15:10</span>
-        </td>
-      </tr>
-    </table>
   </div>
-
+  <script src="src/javascript/main.js"></script>
 </body>
 </html>

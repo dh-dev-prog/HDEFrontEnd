@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "HDE TEST FRONTEND",
+  "main": "hde.js",
+  "scripts": {
+    "build:css": "node-sass -w src/css/main.scss src/css/main.css",
+    "autoprefixer": "postcss -u autoprefixer -r src/css/main.css",
+    "postbuild:css": "\"npm run autoprefixer\""
+  },
+  "author": "Damien Hervieux",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "node-sass": "^4.5.3",
+    "postcss": "^6.0.12",
+    "postcss-cli": "^4.1.1"
+  }
+}

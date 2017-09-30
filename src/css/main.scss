@@ -1,0 +1,176 @@
+// ------------------ partials
+
+@import "partials/box-sizing.scss";
+@import "partials/clearfix.scss";
+@import "partials/reset.scss";
+@import "partials/font.scss";
+
+// ------------------ variables
+
+$main_color: #d1d1d1;
+$border_color: #a7a7a7;
+$darker: darken($main_color, 30%);
+$darker_boost: darken($main_color, 40%);
+
+/* ================== Layout
+*/
+
+.page {
+  margin: 10px;
+  border: 2px solid $border_color;
+  border-radius: 5px;
+}
+.box {
+  min-height: 30px;
+  line-height: 30px;
+  padding: 8px 20px;
+}
+.topbox {
+  background: $main_color;
+  background: linear-gradient(to top, $main_color, #fff);
+  border-bottom: 2px solid $border_color;
+  border-radius: 5px;
+}
+.subox {
+  border-bottom: 2px solid $border_color;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+/* ================== Modules
+*/
+
+/* ------------------ topbox content
+*/
+
+.topbox_content {
+  max-height: 23px;
+  line-height: 23px;
+  vertical-align: center;
+}
+.input-date,
+.search-period,
+.dash {
+  height: 23px;
+  line-height: 23px;
+  vertical-align: center;
+  display: inline-block;
+  margin-right: 5px;
+}
+.input-date {
+  width: 120px;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+.topbox_bg {
+  background-color: $border_color;
+}
+
+/* ------------------ table
+*/
+.emailbox {
+  width: 99%;
+  margin: auto;
+  table-layout: fixed;
+}
+.emailbox_row {
+  border-top: 1px solid $border_color;
+  & th:first-of-type,
+  & td:first-of-type {
+    padding-left: 15px;
+  }
+  & td:nth-of-type(2) {
+    color: $darker;
+  }
+  & th:nth-of-type(3),
+  & td:nth-of-type(3) {
+    width: 35%;
+  }
+  & th:last-of-type,
+  & td:last-of-type {
+    width: 15%;
+  }
+  &:first-of-type {
+    border-top: none;
+  }
+  &:not(:first-of-type):not(.emailbox_row_content):hover {
+    background: linear-gradient(to top, $main_color, #fff);
+  }
+  cursor: pointer;
+}
+.emailbox_header {
+  text-align: left;
+  color: $darker_boost;
+}
+.emailbox_header,
+.emailbox_cell {
+  width: 20%;
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.emailbox_addressImg {
+  height: 16px;
+  display: inline-block;
+  vertical-align: text-top;
+  margin-right: 2px;
+}
+.hidden {
+  display: none;
+}
+.ascending,
+.unsorted {
+  background: url('../images/arrow_up.png') no-repeat;
+  background-position: 45px 11px;
+}
+.descending {
+  background: url('../images/arrow_down.png') no-repeat;
+  background-position: 45px 11px;
+}
+
+/* ------------------ buttons
+*/
+
+.btn {
+  display: inline-block;
+  vertical-align: top;
+  max-height: 23px;
+  width: 80px;
+  margin-left: 5px;
+  cursor: pointer;
+  &:hover .btn_sprite {
+    background-image: url("../images/button_hover.png");
+  }
+  &:active .btn_sprite {
+    background-image: url("../images/button_click.png");
+  }
+}
+.btn_sprite {
+  background-image: url("../images/button_default.png");
+  display: inline-block;
+  vertical-align: top;
+  height: 23px;
+}
+.sprite_left {
+  width: 5px;
+  background-position: 0 -46px;
+}
+.sprite_middle {
+  width: 70px;
+  background-position: 0 -23px;
+}
+.sprite_right {
+  width: 5px;
+  background-position: 0 0;
+}
+.btn_img {
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 23px;
+}
+.btn_text {
+  display: inline-block;
+  vertical-align: middle;
+  height: 23px;
+  line-height: 23px;
+}
