@@ -6,10 +6,8 @@
   <meta name="description" content="HDE Frontend Test - Email" />
   <meta name="viewport" content="width = device-width, initial-scale = 1" />
   <link rel="stylesheet" href="src/css/main.css" />
-  <script src="src/angular/angular.min.js"></script>
-  <script src="src/angular/app.js"></script>
 </head>
-<body ng-app="emailbox">
+<body>
   <div class="page">
     <div class="topbox_bg">
       <div class="box topbox">
@@ -26,25 +24,28 @@
         </div>
       </div>
     </div>
-    <div ng-controller="EmailBoxController">
+    <div>
       <div class="box subox">
         <h3>Results: <span class="mail_count"></span> mail(s)</h3>
       </div>
       <table class="box subox emailbox">
-        <tr class="emailbox_row">
-          <th class="emailbox_header">
-            From
-          </th>
-          <th class="emailbox_header">
-            To
-          </th>
-          <th class="emailbox_header">
-            Subject
-          </th>
-          <th class="emailbox_header header_date unsorted">
-            Date
-          </th>
-        </tr>
+        <thead>
+          <tr class="emailbox_row emailbox_header_row">
+            <th class="emailbox_header">
+              From
+            </th>
+            <th class="emailbox_header">
+              To
+            </th>
+            <th class="emailbox_header">
+              Subject
+            </th>
+            <th class="emailbox_header header_date unsorted">
+              Date
+            </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
       </table>
     </div>
   </div>

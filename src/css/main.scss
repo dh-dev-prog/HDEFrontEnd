@@ -70,8 +70,9 @@ $darker_boost: darken($main_color, 40%);
 .emailbox {
   width: 99%;
   margin: auto;
-  table-layout: fixed;
+  table-layout: fixed; /* to prevent cell to adjust to their content */
 }
+
 .emailbox_row {
   border-top: 1px solid $border_color;
   & th:first-of-type,
@@ -89,13 +90,17 @@ $darker_boost: darken($main_color, 40%);
   & td:last-of-type {
     width: 15%;
   }
-  &:first-of-type {
-    border-top: none;
-  }
-  &:not(:first-of-type):not(.emailbox_row_content):hover {
+  &:not(.emailbox_row_content):hover {
     background: linear-gradient(to top, $main_color, #fff);
   }
   cursor: pointer;
+}
+.emailbox_header_row {
+  border-top: none;
+  padding-left: 15px;
+  &:hover {
+    background: inherit;
+  }
 }
 .emailbox_header {
   text-align: left;
@@ -115,17 +120,11 @@ $darker_boost: darken($main_color, 40%);
   vertical-align: text-top;
   margin-right: 2px;
 }
-.hidden {
-  display: none;
-}
-.ascending,
-.unsorted {
-  background: url('../images/arrow_up.png') no-repeat;
-  background-position: 45px 11px;
-}
-.descending {
-  background: url('../images/arrow_down.png') no-repeat;
-  background-position: 45px 11px;
+
+.logo {
+  max-width: 100%;
+  margin: 50px auto;
+  border: 1px solid red
 }
 
 /* ------------------ buttons
@@ -173,4 +172,20 @@ $darker_boost: darken($main_color, 40%);
   vertical-align: middle;
   height: 23px;
   line-height: 23px;
+}
+
+/* ------------------ states
+*/
+
+.hidden {
+  display: none;
+}
+.ascending,
+.unsorted {
+  background: url('../images/arrow_up.png') no-repeat;
+  background-position: 45px 11px;
+}
+.descending {
+  background: url('../images/arrow_down.png') no-repeat;
+  background-position: 45px 11px;
 }
