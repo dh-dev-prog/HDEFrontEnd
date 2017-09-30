@@ -20,111 +20,126 @@ $darker_boost: darken($main_color, 40%);
   border: 2px solid $border_color;
   border-radius: 5px;
 }
-.box {
-  min-height: 30px;
-  line-height: 30px;
-  padding: 8px 20px;
-}
-.topbox {
+.page-header {
   background: $main_color;
   background: linear-gradient(to top, $main_color, #fff);
   border-bottom: 2px solid $border_color;
   border-radius: 5px;
 }
-.subox {
+.page-header__bg {
+  background-color: $border_color;
+}
+.layout-box {
+  min-height: 30px;
+  line-height: 30px;
+  padding: 8px 20px;
+}
+.layout-box--border {
+  @extend .layout-box;
   border-bottom: 2px solid $border_color;
   &:last-child {
     border-bottom: none;
   }
 }
+
 /* ================== Modules
 */
 
-/* ------------------ topbox content
+/* ------------------ period-search
 */
 
-.topbox_content {
-  max-height: 23px;
-  line-height: 23px;
+.period-search {
   vertical-align: center;
+  min-height: 23px;
+  line-height: 23px;
 }
-.input-date,
-.search-period,
+.period-search__input,
+.period-search__title,
 .dash {
+  display: inline-block;
+  vertical-align: center;
   height: 23px;
   line-height: 23px;
-  vertical-align: center;
-  display: inline-block;
   margin-right: 5px;
 }
-.input-date {
+.period-search__input {
   width: 120px;
   font-family: 'Trebuchet MS', sans-serif;
 }
-.topbox_bg {
-  background-color: $border_color;
+.btn-wrapper {
+  display: inline-block;
 }
 
-/* ------------------ table
+@media only screen and (max-width:530px) {
+  .period-search__input,
+  .period-search__title,
+  .btn-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+  .btn-wrapper {
+    display: block;
+    padding: 15px 10px 10px;
+    text-align: right;
+  }
+}
+/* ------------------ results
 */
-.emailbox {
+
+.results {
+  display: inline-block;
+}
+/* ------------------ mailbox
+*/
+.mailbox {
   width: 99%;
-  margin: auto;
+  margin: 0 auto;
   table-layout: fixed; /* to prevent cell to adjust to their content */
 }
-
-.emailbox_row {
+.mailbox__row {
   border-top: 1px solid $border_color;
-  & th:first-of-type,
-  & td:first-of-type {
-    padding-left: 15px;
-  }
-  & td:nth-of-type(2) {
-    color: $darker;
-  }
-  & th:nth-of-type(3),
-  & td:nth-of-type(3) {
-    width: 35%;
-  }
-  & th:last-of-type,
-  & td:last-of-type {
-    width: 15%;
-  }
-  &:not(.emailbox_row_content):hover {
+  cursor: pointer;
+  &:not(.mailbox__row_content):not(.mailbox__headrow):hover {
     background: linear-gradient(to top, $main_color, #fff);
   }
-  cursor: pointer;
 }
-.emailbox_header_row {
-  border-top: none;
+.mailbox__headrow {
   padding-left: 15px;
-  &:hover {
-    background: inherit;
-  }
+  border-top: none;
 }
-.emailbox_header {
-  text-align: left;
-  color: $darker_boost;
-}
-.emailbox_header,
-.emailbox_cell {
+.mailbox__cell,
+.mailbox__headcell {
   width: 20%;
   padding-left: 10px;
+  text-align: left;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  &:first-of-type {
+    padding-left: 15px;
+  }
+  &:nth-of-type(3) {
+    width: 35%;
+  }
+  &:last-of-type {
+    width: 15%;
+  }
 }
-.emailbox_addressImg {
-  height: 16px;
+.mailbox__headcell {
+  color: $darker_boost;
+}
+.mailbox__contact-pic {
   display: inline-block;
   vertical-align: text-top;
+  height: 16px;
   margin-right: 2px;
 }
-
-.logo {
-  max-width: 100%;
-  margin: 50px auto;
-  border: 1px solid red
+.email__to {
+  color: $darker;
+}
+.email__content {
+  padding: 15px;
+  text-indent: 15px;
 }
 
 /* ------------------ buttons
@@ -137,44 +152,65 @@ $darker_boost: darken($main_color, 40%);
   width: 80px;
   margin-left: 5px;
   cursor: pointer;
-  &:hover .btn_sprite {
+  &:hover .btn__sprite {
     background-image: url("../images/button_hover.png");
   }
-  &:active .btn_sprite {
+  &:active .btn__sprite {
     background-image: url("../images/button_click.png");
   }
 }
-.btn_sprite {
-  background-image: url("../images/button_default.png");
+.btn__sprite {
   display: inline-block;
   vertical-align: top;
   height: 23px;
+  background-image: url("../images/button_default.png");
 }
-.sprite_left {
+.btn__sprite--left {
+  @extend .btn__sprite;
   width: 5px;
   background-position: 0 -46px;
 }
-.sprite_middle {
+.btn__sprite--middle {
+  @extend .btn__sprite;
   width: 70px;
   background-position: 0 -23px;
 }
-.sprite_right {
+.btn__sprite--right {
+  @extend .btn__sprite;
   width: 5px;
   background-position: 0 0;
 }
-.btn_img {
+.btn__img {
   display: inline-block;
   vertical-align: middle;
   max-height: 23px;
 }
-.btn_text {
+.btn__text {
   display: inline-block;
   vertical-align: middle;
   height: 23px;
   line-height: 23px;
 }
+.btn--clear {
+  display: inline-block;
+  margin-left: 10px;
+}
+.btn-wrapper {
+  display: inline-block;
+}
+@media only screen and (max-width:530px) {
+  .btn-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+  .btn-wrapper {
+    display: block;
+    padding: 15px 10px 10px;
+    text-align: right;
+  }
+}
 
-/* ------------------ states
+/* ================== States
 */
 
 .hidden {
@@ -188,4 +224,24 @@ $darker_boost: darken($main_color, 40%);
 .descending {
   background: url('../images/arrow_down.png') no-repeat;
   background-position: 45px 11px;
+}
+.email__active {
+  transform: rotate(0.25turn);
+  margin-right: 5px;
+}
+
+/* ------------------ mailbox empty
+*/
+
+.mailbox__empty {
+  width: 99%;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+}
+.logo {
+  max-width: 100%;
+  height: auto;
+  margin: 14% auto;
 }

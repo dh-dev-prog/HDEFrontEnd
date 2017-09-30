@@ -9,40 +9,36 @@
 </head>
 <body>
   <div class="page">
-    <div class="topbox_bg">
-      <div class="box topbox">
-        <div class="topbox_content">
-          <h3 class="search-period">Search Period :</h3>
-          <input class="input-date" type="date" />
+    <div class="page-header__bg">
+      <div class="page-header layout-box">
+        <div class="period-search">
+          <h3 class="period-search__title">Search Period :</h3>
+          <input class="period-search__input" type="date" />
           <span class="dash">-</span>
-          <input class="input-date" type="date" />
-          <div class="btn">
-            <span class="btn_sprite sprite_left"></span><!--
-            --><span class="btn_sprite sprite_middle"><img class="btn_img" src="src/images/tool-search.png" /><span class="btn_text">Search</span></span><!--
-            --><span class="btn_sprite sprite_right"></span>
+          <input class="period-search__input" type="date" />
+          <div class="btn-wrapper">
+            <div class="btn">
+              <span class="btn__sprite--left"></span><!--
+              --><span class="btn__sprite--middle"><img class="btn__img" src="src/images/tool-search.png" /><span class="btn__text">Search</span></span><!--
+              --><span class="btn__sprite--right"></span>
+            </div>
           </div>
+
         </div>
       </div>
     </div>
     <div>
-      <div class="box subox">
-        <h3>Results: <span class="mail_count"></span> mail(s)</h3>
+      <div class="layout-box--border">
+        <h3 class="results">Results: <span class="mailbox-count"></span> mail(s)</h3>
+        <button class="btn--clear">Clear</button>
       </div>
-      <table class="box subox emailbox">
+      <table class=" mailbox layout-box--border">
         <thead>
-          <tr class="emailbox_row emailbox_header_row">
-            <th class="emailbox_header">
-              From
-            </th>
-            <th class="emailbox_header">
-              To
-            </th>
-            <th class="emailbox_header">
-              Subject
-            </th>
-            <th class="emailbox_header header_date unsorted">
-              Date
-            </th>
+          <tr class="mailbox__row mailbox__headrow">
+            <th class="mailbox__headcell"> From </th>
+            <th class="mailbox__headcell"> To </th>
+            <th class="mailbox__headcell"> Subject </th>
+            <th class="mailbox__headcell mailbox__headdate unsorted"> Date </th>
           </tr>
         </thead>
         <tbody></tbody>

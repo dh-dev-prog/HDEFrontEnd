@@ -45,41 +45,56 @@
       this.render(this.emails);
     },
     cacheDom: function(){
-      this.count = document.querySelector('.mail_count');
-      this.date = document.querySelector('.header_date');
-      this.table = document.getElementsByTagName('table')[0];
+      this.count = document.querySelector('.mailbox-count');
+      this.date = document.querySelector('.mailbox__headdate');
+      this.table = document.querySelector('.mailbox');
       this.tbody = this.table.querySelector('tbody');
+      this.clear = document.querySelector('.btn--clear');
+      this.restore = document.getElementById('restore');
       //this.rows will be available after render() has been called,
       //Or render() needs to be called after cacheDom() to get access to some cache variables.
       this.rows = this.toArray(document.querySelectorAll('.email_row'));
     },
-    bindEvents: function(row){
+    bindEvents: function(){
       // Sort the array of emails or reverse it
       this.date.addEventListener('click', this.sortByDate.bind(this));
+      this.clear.addEventListener('click', function(e){
+        e.preventDefault();
+        var data = {
+          emails: emailbox_body.emails
+        }
+        data.emails.splice(0, emailbox_body.emails.length);
+        emailbox_body.render(data.emails);
+        var el = emailbox_body.clear.parentNode;
+        el.removeChild(emailbox_body.clear)
+      });
     },
     render: function(emails) {
       var msg = '';
       if (!emails.length) {
-        msg += '<img class="logo" src="src/images/logo.png" />';
+        this.table.innerHTML = '<img class="logo" src="src/images/logo.png" />';
+        this.table.classList.replace('mailbox', 'mailbox__empty');
+        this.count.textContent = emails.length;
+        return;
       } else {
         for (var i = 0; i < emails.length; i++) {
-          msg += '<tr class="emailbox_row email_row">';
-          msg += '<td class="emailbox_cell">';
-          msg += '<span class="email_from">' + emails[i].from + '</span>';
+          msg += '<tr class="mailbox__row email_row">';
+          msg += '<td class="mailbox__cell">';
+          msg += '<span class="email__from">' + emails[i].from + '</span>';
           msg += '</td>';
-          msg += '<td class="emailbox_cell">';
-          msg += '<img class="emailbox_addressImg" src="src/images/addresses.png" />';
-          msg += '<span class="email_to">' + emails[i].to + '</span>';
+          msg += '<td class="mailbox__cell">';
+          msg += '<img class="mailbox__contact-pic" src="src/images/addresses.png" />';
+          msg += '<span class="email__to">' + emails[i].to + '</span>';
           msg += '</td>';
-          msg += '<td class="emailbox_cell">';
-          msg += '<span class="email_subject">' + emails[i].subject + '</span><span class="email_date"> ' + emails[i].date + '</span>';
+          msg += '<td class="mailbox__cell">';
+          msg += '<span class="email__subject">' + emails[i].subject + '</span><span class="email_date"> ' + emails[i].date + '</span>';
           msg += '</td>';
-          msg += '<td class="emailbox_cell">';
-          msg += '<span class="email_date date">' + emails[i].date + '</span>';
+          msg += '<td class="mailbox__cell">';
+          msg += '<span class="email__date">' + emails[i].date + '</span>';
           msg += '</td>';
           msg += '</tr>';
-          msg += '<tr class="emailbox_row emailbox_row_content hidden">';
-          msg += '<td class="email_content" colspan="4">' + emails[i].content + '</td>';
+          msg += '<tr class="mailbox__row mailbox__row_content hidden">';
+          msg += '<td class="email__content" colspan="4">' + emails[i].content + '</td>';
           msg += '</tr>'
         }
       }
@@ -95,20 +110,36 @@
     },
     showContentRow: function() {
       // Go through each row
-      this.rows.forEach(function(row){
-        // On click on row
+      this.rows.forEach(function(row, index){
+        // When click on a row, two things happen:
         row.addEventListener('click', function() {
+          // Insert an arrow to indicate this email is currently open
+          var img = document.createElement('img');
+          var node = document.getElementsByClassName('email__from')[index];
+          var el = node.parentNode;
           var content = row.nextSibling;
+          // If the <span class="email__from"> is the firstChild of its parent element (<td>):
+          // Insert arrow to show it is now active
+          if(el.firstChild === node) {
+            img.setAttribute('src', 'src/images/arrow_up.png');
+            img.setAttribute('class', 'email__active');
+            el.insertBefore(img, node);
+          // Otherwise, if <img> already here, remove it
+          } else {
+            el.removeChild(el.firstChild)
+          }
           // Show the adjacent row which hold the email.content
           content.classList.toggle('hidden');
         })
       })
     },
     sortByDate: function(){
+      // If the <th> element Date has already a class ascending or descending, just reverse the array
       if (this.date.classList.contains("ascending") || this.date.classList.contains("descending")) {
         this.date.classList.toggle('ascending');
         this.date.classList.toggle('descending');
         this.sorted = this.emails.reverse();
+      // Otherwise add class ascending and sort the array
       } else {
         this.date.classList.replace('unsorted', 'ascending');
         this.sortEmails();

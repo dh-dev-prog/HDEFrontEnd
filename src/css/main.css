@@ -108,100 +108,117 @@ cite, em {
   border: 2px solid #a7a7a7;
   border-radius: 5px; }
 
-.box {
-  min-height: 30px;
-  line-height: 30px;
-  padding: 8px 20px; }
-
-.topbox {
+.page-header {
   background: #d1d1d1;
   background: linear-gradient(to top, #d1d1d1, #fff);
   border-bottom: 2px solid #a7a7a7;
   border-radius: 5px; }
 
-.subox {
+.page-header__bg {
+  background-color: #a7a7a7; }
+
+.layout-box, .layout-box--border {
+  min-height: 30px;
+  line-height: 30px;
+  padding: 8px 20px; }
+
+.layout-box--border {
   border-bottom: 2px solid #a7a7a7; }
-  .subox:last-child {
+  .layout-box--border:last-child {
     border-bottom: none; }
 
 /* ================== Modules
 */
-/* ------------------ topbox content
+/* ------------------ period-search
 */
-.topbox_content {
-  max-height: 23px;
-  line-height: 23px;
-  vertical-align: center; }
+.period-search {
+  vertical-align: center;
+  min-height: 23px;
+  line-height: 23px; }
 
-.input-date,
-.search-period,
+.period-search__input,
+.period-search__title,
 .dash {
+  display: inline-block;
+  vertical-align: center;
   height: 23px;
   line-height: 23px;
-  vertical-align: center;
-  display: inline-block;
   margin-right: 5px; }
 
-.input-date {
+.period-search__input {
   width: 120px;
   font-family: 'Trebuchet MS', sans-serif; }
 
-.topbox_bg {
-  background-color: #a7a7a7; }
+.btn-wrapper {
+  display: inline-block; }
 
-/* ------------------ table
+@media only screen and (max-width: 530px) {
+  .period-search__input,
+  .period-search__title,
+  .btn-wrapper {
+    width: 100%;
+    margin: 0; }
+  .btn-wrapper {
+    display: block;
+    padding: 15px 10px 10px;
+    text-align: right; } }
+
+/* ------------------ results
 */
-.emailbox {
+.results {
+  display: inline-block; }
+
+/* ------------------ mailbox
+*/
+.mailbox {
   width: 99%;
-  margin: auto;
+  margin: 0 auto;
   table-layout: fixed;
   /* to prevent cell to adjust to their content */ }
 
-.emailbox_row {
+.mailbox__row {
   border-top: 1px solid #a7a7a7;
   cursor: pointer; }
-  .emailbox_row th:first-of-type,
-  .emailbox_row td:first-of-type {
-    padding-left: 15px; }
-  .emailbox_row td:nth-of-type(2) {
-    color: #858585; }
-  .emailbox_row th:nth-of-type(3),
-  .emailbox_row td:nth-of-type(3) {
-    width: 35%; }
-  .emailbox_row th:last-of-type,
-  .emailbox_row td:last-of-type {
-    width: 15%; }
-  .emailbox_row:not(.emailbox_row_content):hover {
+  .mailbox__row:not(.mailbox__row_content):not(.mailbox__headrow):hover {
     background: linear-gradient(to top, #d1d1d1, #fff); }
 
-.emailbox_header_row {
-  border-top: none;
-  padding-left: 15px; }
-  .emailbox_header_row:hover {
-    background: inherit; }
+.mailbox__headrow {
+  padding-left: 15px;
+  border-top: none; }
 
-.emailbox_header {
-  text-align: left;
-  color: #6b6b6b; }
-
-.emailbox_header,
-.emailbox_cell {
+.mailbox__cell,
+.mailbox__headcell {
   width: 20%;
   padding-left: 10px;
+  text-align: left;
+  text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  overflow: hidden; }
+  .mailbox__cell:first-of-type,
+  .mailbox__headcell:first-of-type {
+    padding-left: 15px; }
+  .mailbox__cell:nth-of-type(3),
+  .mailbox__headcell:nth-of-type(3) {
+    width: 35%; }
+  .mailbox__cell:last-of-type,
+  .mailbox__headcell:last-of-type {
+    width: 15%; }
 
-.emailbox_addressImg {
-  height: 16px;
+.mailbox__headcell {
+  color: #6b6b6b; }
+
+.mailbox__contact-pic {
   display: inline-block;
   vertical-align: text-top;
+  height: 16px;
   margin-right: 2px; }
 
-.logo {
-  max-width: 100%;
-  margin: 50px auto;
-  border: 1px solid red; }
+.email__to {
+  color: #858585; }
+
+.email__content {
+  padding: 15px;
+  text-indent: 15px; }
 
 /* ------------------ buttons
 */
@@ -212,41 +229,57 @@ cite, em {
   width: 80px;
   margin-left: 5px;
   cursor: pointer; }
-  .btn:hover .btn_sprite {
+  .btn:hover .btn__sprite, .btn:hover .btn__sprite--left, .btn:hover .btn__sprite--middle, .btn:hover .btn__sprite--right {
     background-image: url("../images/button_hover.png"); }
-  .btn:active .btn_sprite {
+  .btn:active .btn__sprite, .btn:active .btn__sprite--left, .btn:active .btn__sprite--middle, .btn:active .btn__sprite--right {
     background-image: url("../images/button_click.png"); }
 
-.btn_sprite {
-  background-image: url("../images/button_default.png");
+.btn__sprite, .btn__sprite--left, .btn__sprite--middle, .btn__sprite--right {
   display: inline-block;
   vertical-align: top;
-  height: 23px; }
+  height: 23px;
+  background-image: url("../images/button_default.png"); }
 
-.sprite_left {
+.btn__sprite--left {
   width: 5px;
   background-position: 0 -46px; }
 
-.sprite_middle {
+.btn__sprite--middle {
   width: 70px;
   background-position: 0 -23px; }
 
-.sprite_right {
+.btn__sprite--right {
   width: 5px;
   background-position: 0 0; }
 
-.btn_img {
+.btn__img {
   display: inline-block;
   vertical-align: middle;
   max-height: 23px; }
 
-.btn_text {
+.btn__text {
   display: inline-block;
   vertical-align: middle;
   height: 23px;
   line-height: 23px; }
 
-/* ------------------ states
+.btn--clear {
+  display: inline-block;
+  margin-left: 10px; }
+
+.btn-wrapper {
+  display: inline-block; }
+
+@media only screen and (max-width: 530px) {
+  .btn-wrapper {
+    width: 100%;
+    margin: 0; }
+  .btn-wrapper {
+    display: block;
+    padding: 15px 10px 10px;
+    text-align: right; } }
+
+/* ================== States
 */
 .hidden {
   display: none; }
@@ -259,3 +292,21 @@ cite, em {
 .descending {
   background: url("../images/arrow_down.png") no-repeat;
   background-position: 45px 11px; }
+
+.email__active {
+  transform: rotate(0.25turn);
+  margin-right: 5px; }
+
+/* ------------------ mailbox empty
+*/
+.mailbox__empty {
+  width: 99%;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0; }
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  margin: 14% auto; }
