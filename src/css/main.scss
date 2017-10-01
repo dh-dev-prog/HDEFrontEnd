@@ -1,7 +1,6 @@
 // ------------------ partials
 
 @import "partials/box-sizing.scss";
-@import "partials/clearfix.scss";
 @import "partials/reset.scss";
 @import "partials/font.scss";
 
@@ -15,13 +14,15 @@ $darker_boost: darken($main_color, 40%);
 /* ================== Layout
 */
 
+* {
+  user-select: none; /* prevent blue highlight on text when clicking multiple times on element */
+}
 .page {
   margin: 10px;
   border: 2px solid $border_color;
   border-radius: 5px;
 }
 .page-header {
-  background: $main_color;
   background: linear-gradient(to top, $main_color, #fff);
   border-bottom: 2px solid $border_color;
   border-radius: 5px;
@@ -49,7 +50,6 @@ $darker_boost: darken($main_color, 40%);
 */
 
 .period-search {
-  vertical-align: center;
   min-height: 23px;
   line-height: 23px;
 }
@@ -77,16 +77,14 @@ $darker_boost: darken($main_color, 40%);
     width: 100%;
     margin: 0;
   }
-  .btn-wrapper {
-    display: block;
-    padding: 15px 10px 10px;
-    text-align: right;
-  }
 }
 /* ------------------ results
 */
 
 .results {
+  position: relative;
+}
+.results__title {
   display: inline-block;
 }
 /* ------------------ mailbox
@@ -118,6 +116,9 @@ $darker_boost: darken($main_color, 40%);
   &:first-of-type {
     padding-left: 15px;
   }
+  &:nth-of-type(2) {
+    color: $darker;
+  }
   &:nth-of-type(3) {
     width: 35%;
   }
@@ -133,9 +134,6 @@ $darker_boost: darken($main_color, 40%);
   vertical-align: text-top;
   height: 16px;
   margin-right: 2px;
-}
-.email__to {
-  color: $darker;
 }
 .email__content {
   padding: 15px;
@@ -190,10 +188,11 @@ $darker_boost: darken($main_color, 40%);
   vertical-align: middle;
   height: 23px;
   line-height: 23px;
-}
+};
 .btn--clear {
-  display: inline-block;
-  margin-left: 10px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 .btn-wrapper {
   display: inline-block;
@@ -226,8 +225,8 @@ $darker_boost: darken($main_color, 40%);
   background-position: 45px 11px;
 }
 .email__active {
-  transform: rotate(0.25turn);
   margin-right: 5px;
+  transform: rotate(0.25turn);
 }
 
 /* ------------------ mailbox empty
@@ -236,12 +235,12 @@ $darker_boost: darken($main_color, 40%);
 .mailbox__empty {
   width: 99%;
   margin: 0 auto;
-  text-align: center;
-  vertical-align: middle;
   padding: 0;
+  vertical-align: middle;
+  text-align: center;
 }
 .logo {
   max-width: 100%;
   height: auto;
-  margin: 14% auto;
+  margin: 15% auto;
 }

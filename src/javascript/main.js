@@ -1,7 +1,7 @@
 "use strict";
 
 (function(){
-  var emailbox_body = {
+  var mailbox = {
     emails : [
       {
         "from": "テスター1 &lt;tester15@test.example.com&gt;",
@@ -50,31 +50,25 @@
       this.table = document.querySelector('.mailbox');
       this.tbody = this.table.querySelector('tbody');
       this.clear = document.querySelector('.btn--clear');
-      this.restore = document.getElementById('restore');
-      //this.rows will be available after render() has been called,
-      //Or render() needs to be called after cacheDom() to get access to some cache variables.
+      //this.rows will be available after render() has been called. cacheDom() is called each time render() runs
       this.rows = this.toArray(document.querySelectorAll('.email_row'));
     },
     bindEvents: function(){
       // Sort the array of emails or reverse it
       this.date.addEventListener('click', this.sortByDate.bind(this));
-      this.clear.addEventListener('click', function(e){
-        e.preventDefault();
-        var data = {
-          emails: emailbox_body.emails
-        }
-        data.emails.splice(0, emailbox_body.emails.length);
-        emailbox_body.render(data.emails);
-        var el = emailbox_body.clear.parentNode;
-        el.removeChild(emailbox_body.clear)
-      });
+      // Clear the search list
+      this.clear.addEventListener('click', this.clearSearch.bind(this));
     },
     render: function(emails) {
       var msg = '';
       if (!emails.length) {
+        // If no emails replace the content of the table with the logo
         this.table.innerHTML = '<img class="logo" src="src/images/logo.png" />';
+        // Change class name to prevent from interfere with regular state
         this.table.classList.replace('mailbox', 'mailbox__empty');
+        // Update count
         this.count.textContent = emails.length;
+        // return to close the function and avoid calling cacheDom with unexisting element like tbody
         return;
       } else {
         for (var i = 0; i < emails.length; i++) {
@@ -158,9 +152,23 @@
         return a - b;
       })
     },
+    clearSearch: function(e){
+      e.preventDefault();
+      // Store emails in data
+      var data = {
+        emails: this.emails
+      }
+      // Clear all emails by clearing the array
+      data.emails.splice(0, data.emails.length);
+      // Call render to generate a new set of row
+      this.render(data.emails);
+      // remove the clear button
+      var el = this.clear.parentNode;
+      el.removeChild(this.clear);
+    },
     toArray: function(obj) {
       return Array.prototype.slice.call(obj);
     }
   };
-  emailbox_body.init();
+  mailbox.init();
 })();
